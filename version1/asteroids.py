@@ -133,6 +133,9 @@ def update(dt):
         if len(player_lives) > 0:
             reset_level(len(player_lives) - 1)
         else:
+            # 飞船生命值为0之后，从窗口事件handlers中移除飞船的handler
+            for handler in player_ship.event_handlers:
+                game_window.remove_handlers(handler)
             game_over_label.y = 300
     elif victory:
         num_asteroids += 1

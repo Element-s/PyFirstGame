@@ -65,6 +65,9 @@ class Player(physicalobject.PhysicalObject):
             self.engine_sprite.y = self.y
             self.engine_sprite.visible = True
         else:
+            # 没有按下UP键时，设置飞船速度为0
+            self.velocity_x = 0
+            self.velocity_y = 0
             self.engine_sprite.visible = False
             
     def fire(self):
