@@ -87,6 +87,7 @@ def update(dt):
     player_dead = False
     victory = False
     
+	# 处理游戏中对象的碰撞
     for i in xrange(len(game_objects)):
         for j in xrange(i+1, len(game_objects)):
             obj_1 = game_objects[i]
@@ -102,6 +103,7 @@ def update(dt):
     
     asteroids_remaining = 0
     
+	# 更新对象
     for obj in game_objects:
         obj.update(dt)
         to_add.extend(obj.new_objects)
@@ -113,7 +115,7 @@ def update(dt):
     if asteroids_remaining == 0:
         victory = True
             
-        
+    # 移除已经死去的对象        
     for to_remove in [obj for obj in game_objects if obj.dead]:
         if to_remove == player_ship:
             player_dead = True
@@ -138,6 +140,7 @@ def update(dt):
                 game_window.remove_handlers(handler)
             game_over_label.y = 300
     elif victory:
+        # 飞船成功消灭行星，胜利
         num_asteroids += 1
         player_ship.delete()
         score += 10
